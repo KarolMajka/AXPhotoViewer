@@ -9,7 +9,7 @@
 #if canImport(Kingfisher)
 import Kingfisher
 
-class KingfisherIntegration: NSObject, AXNetworkIntegrationProtocol {
+public class KingfisherIntegration: NSObject, AXNetworkIntegrationProtocol {
     
     weak public var delegate: AXNetworkIntegrationDelegate?
     
@@ -70,12 +70,12 @@ class KingfisherIntegration: NSObject, AXNetworkIntegrationProtocol {
         self.retrieveImageTasks[photo.hash] = task
     }
     
-    func cancelLoad(for photo: AXPhotoProtocol) {
+    public func cancelLoad(for photo: AXPhotoProtocol) {
         guard let downloadTask = self.retrieveImageTasks[photo.hash] else { return }
         downloadTask.cancel()
     }
     
-    func cancelAllLoads() {
+    public func cancelAllLoads() {
         self.retrieveImageTasks.forEach({ $1.cancel() })
         self.retrieveImageTasks.removeAll()
     }
